@@ -2251,23 +2251,17 @@ __webpack_require__.r(__webpack_exports__);
         _this.products = response.data;
       });
     },
-    deletepProduct: function deletepProduct(product) {
-      // axios.delete(`/api/product/${product.id}`).then(response => {
-      //     this.$toast.success({
-      //         title: 'success',
-      //         message: 'product deleted succeessfylly'
-      //     });
-
-      // });
-      //     let index = this.products.indexOf(category);
-      //     this.products.splice(index, category)
-      // },
-      // deleteProduct(id) {
-      //     // axios.delete(`/api/product/${id}`).then(response => {
-      //     //     if (response.status === 200) {
-      //     //         this.loadProducts();
-      //     //     }
-      //     // });
+    deleteProduct: function deleteProduct(id) {
+      var _this2 = this;
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a["delete"]("/api/product/".concat(id)).then(function (response) {
+        if (response.status === 200) {
+          _this2.loadProducts();
+          _this2.$toast.success({
+            title: 'success',
+            message: 'Product Delete succeessfylly'
+          });
+        }
+      });
     }
   },
   mounted: function mounted() {
@@ -2431,7 +2425,7 @@ var render = function render() {
     staticClass: "btn btn-primary",
     attrs: {
       to: {
-        name: "create-category"
+        name: "/category"
       }
     }
   }, [_vm._v("Category\n                            List")])], 1), _vm._v(" "), _c("div", {
@@ -2531,7 +2525,7 @@ var render = function render() {
     staticClass: "btn btn-primary",
     attrs: {
       to: {
-        name: "create-category"
+        name: "category"
       }
     }
   }, [_vm._v("Category\n                            List")])], 1), _vm._v(" "), _c("div", {
@@ -2951,7 +2945,7 @@ var render = function render() {
     staticClass: "btn btn-primary",
     attrs: {
       to: {
-        name: "create-product"
+        name: "product"
       }
     }
   }, [_vm._v("Product\n                            List")])], 1), _vm._v(" "), _c("div", {
@@ -3169,7 +3163,12 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "card-header d-flex justify-content-between align-items-center"
   }, [_c("h5", {
-    staticClass: "card-header"
+    staticClass: "card-header",
+    attrs: {
+      to: {
+        name: "/product"
+      }
+    }
   }, [_vm._v(" Product List")]), _vm._v(" "), _c("router-link", {
     staticClass: "btn btn-primary",
     attrs: {

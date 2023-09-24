@@ -6,7 +6,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header d-flex justify-content-between align-items-center">
-                            <h5 class="card-header"> Product List</h5>
+                            <h5 :to="{ name: '/product' }" class="card-header"> Product List</h5>
                             <router-link :to="{ name: 'create-product' }" class="btn btn-primary">Create
                                 Product</router-link>
                         </div>
@@ -76,23 +76,16 @@ export default {
 
 
         },
-        deletepProduct(product) {
-            // axios.delete(`/api/product/${product.id}`).then(response => {
-            //     this.$toast.success({
-            //         title: 'success',
-            //         message: 'product deleted succeessfylly'
-            //     });
-
-            // });
-            //     let index = this.products.indexOf(category);
-            //     this.products.splice(index, category)
-            // },
-            // deleteProduct(id) {
-            //     // axios.delete(`/api/product/${id}`).then(response => {
-            //     //     if (response.status === 200) {
-            //     //         this.loadProducts();
-            //     //     }
-            //     // });
+        deleteProduct(id) {
+            axios.delete(`/api/product/${id}`).then(response => {
+                if (response.status === 200) {
+                    this.loadProducts();
+                    this.$toast.success({
+                        title: 'success',
+                        message: 'Product Delete succeessfylly'
+                    });
+                }
+            });
         }
 
 

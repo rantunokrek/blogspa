@@ -121,6 +121,16 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        if($product){
+           
+            $productImg =  $product->image;
+            $imagePath = public_path($productImg);
+            if ($productImg && file_exists( $imagePath)) {
+               unlink( $imagePath);
+            }
+            $product->delete();
+               }else{
+                   return response()->json('failed', 404);
+               }
     }
 }

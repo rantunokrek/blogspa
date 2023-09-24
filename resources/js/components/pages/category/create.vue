@@ -6,7 +6,7 @@
                     <div class="card">
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <h5 class="card-header"> Create Category</h5>
-                            <router-link :to="{ name: 'create-category' }" class="btn btn-primary">Category
+                            <router-link :to="{ name: '/category' }" class="btn btn-primary">Category
                                 List</router-link>
                         </div>
                         <div class="card">
