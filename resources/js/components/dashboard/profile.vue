@@ -1,5 +1,6 @@
 <template>
     <div class="container mt-5">
+        <h3>User: {{ auth.name }}</h3>
         <div class="row">
             <div class="col-4">
                 <div class="list-group">
@@ -89,7 +90,7 @@ export default {
 
                 // user update on vuex store
                 this.$store.commit('SET_USER', response.data);
-                // toast success notification
+                // // toast success notification
                 this.$toast.success({
                     title: 'Success!',
                     message: 'Profile updated successfully.'

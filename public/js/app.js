@@ -2005,7 +2005,7 @@ __webpack_require__.r(__webpack_exports__);
       this.userProfile.post('/api/user').then(function (response) {
         // user update on vuex store
         _this.$store.commit('SET_USER', response.data);
-        // toast success notification
+        // // toast success notification
         _this.$toast.success({
           title: 'Success!',
           message: 'Profile updated successfully.'
@@ -2649,7 +2649,7 @@ var render = function render() {
     _c = _vm._self._c;
   return _c("div", {
     staticClass: "container mt-5"
-  }, [_c("div", {
+  }, [_c("h3", [_vm._v("User: " + _vm._s(_vm.auth.name))]), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-4"
