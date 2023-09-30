@@ -17,6 +17,16 @@
                     <li class="nav-item">
                         <router-link class="navbar-brand textcolor" :to="{ name: 'product' }">Product</router-link>
                     </li>
+                    <li class="nav-item" v-if="auth">
+                        <router-link class="navbar-brand textcolor" :to="{ name: 'dashboard' }">Dashboard</router-link>
+                    </li>
+                    <li class="nav-item" v-if="!auth">
+                        <router-link class="navbar-brand textcolor" :to="{ name: 'login' }">Login</router-link>
+                    </li>
+                    <li class="nav-item">
+
+                        <a @click.prevent="logout" class="navbar-brand textcolor">Logout</a>
+                    </li>
 
                 </ul>
             </div>
@@ -24,7 +34,27 @@
     </nav>
 </template>
 
-<script setup>
+<script>
+import Axios from 'axios';
+
+export default {
+    methods: {
+        logout() {
+            axios.post('/logout').then(response => {
+                this.$router.push({ name: 'login' });
+                this.$toast.success({
+                    title: 'success',
+                    message: 'LogOut  succeess'
+                });
+            });
+        }
+    },
+    computed: {
+        auth() {
+            return this.$store.getters.getAuthenticated;
+        }
+    }
+}
 
 </script>
 
