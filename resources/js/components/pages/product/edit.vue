@@ -14,6 +14,7 @@
                                 <div class="col-6 offset-3">
                                     <form @submit.prevent="saveProduct">
                                         <div class="form-group">
+
                                             <label for="exampleInputEmail1">Product Title</label>
                                             <input v-model="productForm.title" type="text" name="title" class="form-control"
                                                 :class="{ 'is-invalid': productForm.errors.has('title') }">
@@ -23,6 +24,19 @@
                                             <input v-model="productForm.slug" type="text" name="slug" class="form-control"
                                                 :class="{ 'is-invalid': productForm.errors.has('slug') }">
                                             <has-error :form="productForm" field="slug"></has-error>
+
+                                            <div class="form-group">
+                                                <label for="">Select Product Category</label>
+                                                <select name="category_id" class="form-control"
+                                                    v-model="productForm.category_id"
+                                                    :class="{ 'is-invalid': productForm.errors.has('category_id') }">
+                                                    <option style="display:none;" value="" selected>Select Category</option>
+                                                    <option :value="category.id" v-for="category in categories"
+                                                        :key="category.id"> {{ category.name }}
+                                                    </option>
+                                                </select>
+                                                <has-error :form="productForm" field="category_id"></has-error>
+                                            </div>
 
                                             <label for="exampleInputEmail1">Product Price</label>
                                             <input v-model="productForm.price" type="text" name="price" class="form-control"
@@ -86,9 +100,11 @@ export default {
                 price: '',
                 image: '',
                 description: '',
+                category_id: '',
                 _method: 'put'
             }),
             image: '',
+            categories: [],
 
         }
     },
@@ -100,6 +116,7 @@ export default {
                 this.productForm.title = product.title;
                 this.productForm.slug = product.slug;
                 this.productForm.price = product.price;
+                this.productForm.category_id = product.category_id;
                 this.productForm.description = product.description;
                 this.image = product.image;
 
@@ -132,9 +149,15 @@ export default {
             // Do some client side validation...
             this.productForm.image = file
         },
+        loadCategories() {
+            axios.get('/api/category').then(response => {
+                this.categories = response.data;
+            })
+        }
     },
     mounted() {
         this.loadProductData();
+        this.loadCategories();
     }
 }
 </script>

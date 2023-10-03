@@ -18,8 +18,6 @@ use App\Http\Controllers\ProductController;
 
 
 
-Route::resource('category', 'CategoryController');
-Route::resource('product', 'ProductController');
 
 
 Route::middleware(['auth:sanctum'])->group(function () {
@@ -27,6 +25,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
         return $request->user();
     });
     
+    Route::resource('category', 'CategoryController');
+    Route::resource('product', 'ProductController');
+
     Route::post('user','AuthController@update_user');
 });
 
+Route::get('products', 'PublicApiController@products');

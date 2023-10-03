@@ -34,8 +34,8 @@ export default {
                     message: 'Logout Successful!'
                 });
 
-                // localStorage.removeItem("auth");
-                // this.$store.commit('SET_AUTHENTICATED', false);
+                localStorage.removeItem("auth");
+                this.$store.commit('SET_AUTHENTICATED', false);
                 this.$router.push({ name: 'login' });
             });
         }

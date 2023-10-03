@@ -7,7 +7,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
+                <ul class="navbar-nav ml-auto" v-if="auth">
                     <li class="nav-item active">
                         <router-link class="navbar-brand textcolor" :to="{ name: 'home' }">Home</router-link>
                     </li>
@@ -17,17 +17,20 @@
                     <li class="nav-item">
                         <router-link class="navbar-brand textcolor" :to="{ name: 'product' }">Product</router-link>
                     </li>
-                    <li class="nav-item" v-if="auth">
+                    <li class="nav-item">
                         <router-link class="navbar-brand textcolor" :to="{ name: 'dashboard' }">Dashboard</router-link>
                     </li>
-                    <li class="nav-item" v-if="!auth">
+
+
+                </ul>
+
+                <ul class="navbar-nav ml-auto" v-else="auth">
+                    <li class="nav-item">
                         <router-link class="navbar-brand textcolor" :to="{ name: 'login' }">Login</router-link>
                     </li>
                     <li class="nav-item">
-
-                        <a @click.prevent="logout" class="navbar-brand textcolor">Logout</a>
+                        <router-link class="navbar-brand textcolor" :to="{ name: 'user-signup' }">SignUp</router-link>
                     </li>
-
                 </ul>
             </div>
         </div>

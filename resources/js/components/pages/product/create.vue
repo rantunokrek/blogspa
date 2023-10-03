@@ -23,6 +23,18 @@
                                             <input v-model="productForm.slug" type="text" name="slug" class="form-control"
                                                 :class="{ 'is-invalid': productForm.errors.has('slug') }">
                                             <has-error :form="productForm" field="slug"></has-error>
+                                            <div class="form-group">
+                                                <label for="">Select Product Category</label>
+                                                <select name="category_id" class="form-control"
+                                                    v-model="productForm.category_id"
+                                                    :class="{ 'is-invalid': productForm.errors.has('category_id') }">
+                                                    <option style="display:none;" value="" selected>Select Category</option>
+                                                    <option :value="category.id" v-for="category in categories"
+                                                        :key="category.id"> {{ category.name }}
+                                                    </option>
+                                                </select>
+                                                <has-error :form="productForm" field="category_id"></has-error>
+                                            </div>
 
                                             <label for="exampleInputEmail1">Product Price</label>
                                             <input v-model="productForm.price" type="text" name="price" class="form-control"
@@ -73,10 +85,12 @@ export default {
                 title: '',
                 slug: '',
                 price: '',
+                category_id: '',
                 image: '',
                 description: ''
 
             }),
+            categories: [],
 
         }
     },
@@ -109,7 +123,15 @@ export default {
             // Do some client side validation...
             this.productForm.image = file
         },
+        loadCategories() {
+            axios.get('/api/category').then(response => {
+                this.categories = response.data;
+            })
+        }
     },
+    mounted() {
+        this.loadCategories();
+    }
 }
 </script>
 

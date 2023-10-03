@@ -15,6 +15,7 @@ import Profile from '../components/dashboard/profile.vue'
 
 // product
 import Login from '../components/pages/auth/login.vue'
+import Signup from '../components/pages/auth/signup.vue'
 
 const routes = new VueRouter({
     mode: 'history',
@@ -80,6 +81,12 @@ const routes = new VueRouter({
             path: '/profile',
             component: Profile,
             name: 'user-profile'
+
+        },
+        {
+            path: '/auth/signup',
+            component: Signup,
+            name: 'user-signup'
 
         }
     ]

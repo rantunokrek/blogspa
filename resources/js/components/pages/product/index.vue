@@ -18,6 +18,7 @@
                                         <th scope="col">Title</th>
                                         <th scope="col">Img</th>
                                         <th scope="col">Price</th>
+                                        <th scope="col">Category</th>
                                         <th scope="col">Description</th>
                                         <th style="width:170px" scope="col">
                                             Action
@@ -35,6 +36,12 @@
                                             </div>
                                         </td>
                                         <td scope="row">{{ product.price }}</td>
+                                        <td scope="row">
+                                            <span v-if="product.category"> {{ product.category.name }}</span>
+                                            <span v-else>{{ product.category_id }} </span>
+
+
+                                        </td>
                                         <td scope="row">{{ product.description }}</td>
 
                                         <td style="width:170px">

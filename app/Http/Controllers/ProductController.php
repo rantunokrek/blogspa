@@ -15,7 +15,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::latest()->get();
+        $products = Product::with('category')->latest()->get();
      return response()->json( $products, 200,);
     }
 
@@ -39,16 +39,17 @@ class ProductController extends Controller
     {
         $this->validate($request,[
             'title' => 'required',
-            'slug' => 'required',
            'image' => 'required|image|max:2024',
             'price' => 'required',
             'description' => 'required',
+            'category_id' => 'required',
         ]);
       $product =  Product::create([
             'title' => $request->title,
             'slug' => Str::slug($request->title),
             'price' => $request->price,
             'description' => $request->description,
+            'category_id' => $request->category_id,
         ]);
         if($request->image){
             $imageName = time().'_'. uniqid() .'.'.$request->image->getClientOriginalExtension();
@@ -97,12 +98,14 @@ class ProductController extends Controller
             'slug' => 'required',
            'image' => 'sometimes|nullable|image|max:2024',
             'price' => 'required',
+            'category_id' => 'required',
             'description' => 'required',
         ]);
       $product->update([
             'title' => $request->title,
             'slug' => Str::slug($request->title),
             'price' => $request->price,
+            'category_id' => $request->category_id,
             'description' => $request->description,
         ]);
         if($request->image){
