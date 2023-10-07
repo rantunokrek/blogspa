@@ -42,19 +42,20 @@ import Axios from 'axios';
 
 export default {
     methods: {
-        logout() {
-            axios.post('/logout').then(response => {
-                this.$router.push({ name: 'login' });
-                this.$toast.success({
-                    title: 'success',
-                    message: 'LogOut  succeess'
-                });
-            });
-        }
+        // logout() {
+        //     axios.post('/logout').then(response => {
+        //         this.$router.push({ name: 'login' });
+        //         this.$toast.success({
+        //             title: 'success',
+        //             message: 'LogOut  succeess'
+        //         });
+        //     });
+        // }
     },
     computed: {
         auth() {
             return this.$store.getters.getAuthenticated;
+
         }
     }
 }

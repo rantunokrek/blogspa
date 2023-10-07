@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 
 Vue.use(VueRouter);
 import Home from '../components/pages/Home.vue'
+import Details from '../components/pages/details.vue'
 import Category from '../components/pages/category/index.vue'
 import CategoryCreate from '../components/pages/category/create.vue'
 import CategoryEdit from '../components/pages/category/edit.vue'
@@ -24,69 +25,88 @@ const routes = new VueRouter({
         {
             path: '/',
             component: Home,
-            name: 'home'
+            name: 'home',
 
         },
         {
             path: '/category',
             component: Category,
-            name: 'category'
+            name: 'category',
 
         },
         {
             path: '/category/create',
             component: CategoryCreate,
-            name: 'create-category'
+            name: 'create-category',
 
         },
         {
             path: '/category/edit/:id',
             component: CategoryEdit,
-            name: 'edit-category'
+            name: 'edit-category',
 
         },
         // product route
         {
             path: '/product',
             component: Product,
-            name: 'product'
+            name: 'product',
 
         },
         {
             path: '/product/create',
             component: ProductCreate,
-            name: 'create-product'
+            name: 'create-product',
 
         },
         {
             path: '/product/edit/:id',
             component: ProductEdit,
-            name: 'edit-product'
+            name: 'edit-product',
 
         },
         {
             path: '/auth/login',
             component: Login,
-            name: 'login'
+            name: 'login',
+            meta: {
+                requiresVisitor: true,
+            }
 
         },
         {
             path: '/dashboard',
             component: Dashboard,
-            name: 'dashboard'
+            name: 'dashboard',
+            meta: {
+                requiresAuth: true,
+            }
 
         }
         ,
         {
             path: '/profile',
             component: Profile,
-            name: 'user-profile'
+            name: 'user-profile',
+            meta: {
+                requiresAuth: true,
+            }
+
 
         },
         {
             path: '/auth/signup',
             component: Signup,
-            name: 'user-signup'
+            name: 'user-signup',
+            meta: {
+                requiresVisitor: true,
+            }
+
+        },
+        {
+            path: '/product/:slug',
+            component: Details,
+            name: 'details',
 
         }
     ]
